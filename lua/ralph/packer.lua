@@ -6,14 +6,12 @@ vim.cmd.packadd('packer.nvim')
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-    
     -- Telescope
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.6',
         -- or                            , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
-    
     -- Tokyonigth colorscheme
     use ('folke/tokyonight.nvim')
 
@@ -29,7 +27,6 @@ return require('packer').startup(function(use)
             }
         end
     })
-    
     -- Treesitter
     use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
     use("nvim-treesitter/playground")
@@ -58,7 +55,6 @@ return require('packer').startup(function(use)
     use 'nvim-tree/nvim-web-devicons' -- OPTIONAL: for file icons
     use 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
     use 'romgrk/barbar.nvim'
-    
     -- LSP
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -79,5 +75,13 @@ return require('packer').startup(function(use)
             {'hrsh7th/cmp-nvim-lua'},
             {'L3MON4D3/LuaSnip'},
         }
+    }
+
+    -- lazy.nvim:
+    use {
+        "smoka7/multicursors.nvim",
+        requires = {
+            'smoka7/hydra.nvim',
+        },
     }
 end)
