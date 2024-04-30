@@ -76,12 +76,15 @@ return require('packer').startup(function(use)
             {'L3MON4D3/LuaSnip'},
         }
     }
-
-    -- lazy.nvim:
+    -- Multicursors
     use {
-        "smoka7/multicursors.nvim",
-        requires = {
-            'smoka7/hydra.nvim',
-        },
+        'mg979/vim-visual-multi',
+        branch = 'master',
     }
+    -- Indentation
+    use "lukas-reineke/indent-blankline.nvim"
+
+    -- Autoclose
+    use 'm4xshen/autoclose.nvim'
+
 end)
