@@ -1,5 +1,7 @@
-
 vim.g.mapleader = " "
+
+-- delete buffer
+vim.keymap.set("n", "<A-c>", "<cmd>bdelete<CR>")
 
 -- Exit to directory
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
@@ -15,7 +17,7 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
--- in n mode jump to words that is just searched  
+-- in n mode jump to words that is just searched
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
@@ -31,11 +33,11 @@ end)
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- delete without copy to buffer
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- next greatest remap ever : asbjornHaland
 -- in v mode copy to clipboard
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- This is going to get me cancelled
@@ -55,7 +57,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- in normal mode go to packer file
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/ralph/packer.lua<CR>");
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/ralph/lazy/init.lua<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 vim.keymap.set("n", "<leader><leader>", function()
