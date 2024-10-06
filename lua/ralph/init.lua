@@ -3,6 +3,7 @@ require("ralph.remap")
 require("ralph.lazy_init")
 
 vim.cmd[[colorscheme tokyonight]]
+vim.o.conceallevel = 1
 
 -- create autocmd group
 local augroup = vim.api.nvim_create_augroup
@@ -57,3 +58,16 @@ autocmd('LspAttach', {
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+
+-- dim unused window
+vim.cmd([[
+    " Active window with transparent background
+    hi ActiveWindow guibg=NONE
+
+    " Inactive window with a dimmed background
+    hi InactiveWindow guibg=#282c34
+
+    " Apply the highlight groups to active and inactive windows
+    set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+]])
+

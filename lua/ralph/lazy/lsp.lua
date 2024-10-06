@@ -28,7 +28,6 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
-                "tsserver",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -49,6 +48,22 @@ return {
                                 }
                             }
                         }
+                    }
+                end,
+
+                ["ltex"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.ltex.setup {
+                        capabilities = capabilities,
+                        settings = {
+                            ltex = {
+                                language = "id", -- Set the language to Bahasa Indonesia
+                                additionalRules = {
+                                    motherTongue = "id",
+                                },
+                                checkFrequency = "save", -- When to check: can be "save", "edit" or "manual"
+                            },
+                        },
                     }
                 end,
             }
