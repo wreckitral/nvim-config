@@ -55,6 +55,7 @@ return {
                     local lspconfig = require("lspconfig")
                     lspconfig.ltex.setup {
                         capabilities = capabilities,
+                        filetypes = {"tex"},
                         settings = {
                             ltex = {
                                 language = "id", -- Set the language to Bahasa Indonesia
