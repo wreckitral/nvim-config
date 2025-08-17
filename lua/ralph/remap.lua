@@ -63,4 +63,47 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
+
+-- Start preview (document mode)
+vim.keymap.set("n", "<leader>tp", function()
+  vim.cmd("TypstPreview")
+end, { desc = "Typst: Start Preview" })
+
+-- TYPSY RELATED --
+-- Start preview (slide mode)
+vim.keymap.set("n", "<leader>ts", function()
+  vim.cmd("TypstPreview slide")
+end, { desc = "Typst: Start Slide Preview" })
+
+-- Stop preview
+vim.keymap.set("n", "<leader>tq", function()
+  vim.cmd("TypstPreviewStop")
+end, { desc = "Typst: Stop Preview" })
+
+-- Toggle preview
+vim.keymap.set("n", "<leader>to", function()
+  vim.cmd("TypstPreviewToggle")
+end, { desc = "Typst: Toggle Preview" })
+
+-- Enable follow cursor
+vim.keymap.set("n", "<leader>tc", function()
+  require("typst-preview").set_follow_cursor(true)
+end, { desc = "Typst: Enable Follow Cursor" })
+
+-- Disable follow cursor
+vim.keymap.set("n", "<leader>tn", function()
+  require("typst-preview").set_follow_cursor(false)
+end, { desc = "Typst: Disable Follow Cursor" })
+
+-- Toggle follow cursor
+vim.keymap.set("n", "<leader>tC", function()
+  local preview = require("typst-preview")
+  preview.set_follow_cursor(not preview.get_follow_cursor())
+end, { desc = "Typst: Toggle Follow Cursor" })
+
+-- Sync preview to cursor (without enabling auto-follow)
+vim.keymap.set("n", "<leader>tx", function()
+  require("typst-preview").sync_with_cursor()
+end, { desc = "Typst: Sync Preview to Cursor" })
+
 -- end
