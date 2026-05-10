@@ -29,13 +29,28 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
-                "tinymist"
+                "tinymist",
+                "gopls",
+                "ts_ls",
+                "pylsp"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
 
                     require("lspconfig")[server_name].setup {
                         capabilities = capabilities
+                    }
+                end,
+
+                ["gopls"] = function()
+                    require("lspconfig").gopls.setup {
+                        capabilities = capabilities,
+                        settings = {
+                            gopls = {
+                                analyses = { unusedparams = true },
+                                staticcheck = true,
+                            },
+                        },
                     }
                 end,
 
