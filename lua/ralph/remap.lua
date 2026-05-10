@@ -3,9 +3,6 @@ vim.g.mapleader = " "
 -- delete buffer
 vim.keymap.set("n", "<A-c>", "<cmd>bdelete<CR>")
 
--- Exit to directory
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-
 -- in v mode J for moving block of code
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
