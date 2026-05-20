@@ -3,12 +3,10 @@ return {
     version = "*",
     lazy = false,
     dependencies = {
-        "nvim-tree/nvim-web-devicons", -- Requires a Nerd Font to be installed
+        "nvim-tree/nvim-web-devicons",
     },
     config = function()
-        -- Optionally enable 24-bit color
         vim.opt.termguicolors = true
-
         require("nvim-tree").setup({
             sort = {
                 sorter = "case_sensitive",
@@ -27,19 +25,42 @@ return {
                 group_empty = true,
             },
             filters = {
-                dotfiles = false, -- Set to true to hide dotfiles by default
+                dotfiles = false,
             },
             git = {
                 enable = true,
                 ignore = false,
                 timeout = 500,
             },
+            on_attach = function(bufnr)
+                local api = require("nvim-tree.api")
+
+                -- Load all default mappings first
+                api.config.mappings.default_on_attach(bufnr)
+
+                local opts = function(desc)
+                    return {
+                        desc = "nvim-tree: " .. desc,
+                        buffer = bufnr,
+                        noremap = true,
+                        silent = true,
+                        nowait = true,
+                    }
+                end
+
+                -- Remap: create file with %
+                vim.keymap.set("n", "%", api.fs.create, opts("Create File"))
+
+                -- Remap: create directory with d
+                vim.keymap.set("n", "d", api.fs.create, opts("Create Directory"))
+
+                -- Remap: delete with R
+                vim.keymap.set("n", "D", api.fs.remove, opts("Delete"))
+            end,
         })
     end,
     keys = {
-        -- Map <leader>e to toggle the tree
         { "<leader>pv", "<cmd>NvimTreeToggle<CR>", desc = "Toggle File Explorer" },
-        -- Map <leader>f to find the current file in the tree
         { "<leader>f", "<cmd>NvimTreeFindFileToggle<CR>", desc = "Find File in Explorer" },
     }
 }
